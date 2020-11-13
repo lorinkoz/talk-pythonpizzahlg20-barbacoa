@@ -93,7 +93,7 @@ layout: true
 
 --
 
--   Tu desarrollas una solución en Django.
+-   Tú desarrollas una solución en Django.
 
 --
 
@@ -101,7 +101,11 @@ layout: true
 
 --
 
-.left-column-66[.box[🤔 ¿Qué hacer?]]
+.left-column-66[
+
+## .right[🤔 ¿Qué hacer?]
+
+]
 .right-column-33[.right[![Screenshot of Townscaper with a tiny red house](images/problem-solved.png)]]
 
 ---
@@ -288,6 +292,14 @@ Los usuarios **son** los tenants:
 
 ---
 
+<br/>
+<br/>
+<br/>
+
+## .center[🤔 ¿Cuál escoger?]
+
+---
+
 class: middle
 layout: false
 
@@ -304,9 +316,15 @@ layout: true
 
 ---
 
-## Aislado
+## Aislada
 
 Una base de datos para cada tenant.
+
+```python
+Question.objects\
+        .using(tenant1)\
+        .all()
+```
 
 ---
 
@@ -323,7 +341,7 @@ Una base de datos para cada tenant.
 
 ---
 
-**Feo**
+**Complicado**
 
 -   Altos costos de operación.
 
@@ -338,9 +356,14 @@ layout: true
 
 ---
 
-## Compartido
+## Compartida
 
-Una sola base de datos, los datos estan mezclados e identificados por una columna que representa el tenant.
+Una sola base de datos con datos estan mezclados e identificados por tenant.
+
+```python
+Question.objects\
+        .filter(tenant="tenant1")
+```
 
 ---
 
@@ -356,7 +379,7 @@ Una sola base de datos, los datos estan mezclados e identificados por una column
 
 ---
 
-**Feo**
+**Complicado**
 
 -   Es fácil olvidar la separación y comprometer los datos.
 
@@ -371,9 +394,14 @@ layout: true
 
 ---
 
-## Semi-aislado
+## Semi-aislada
 
 Una sola base de datos, los tenants están separados por **schemas** de PostgreSQL.
+
+```python
+# SET search_path = tenant1
+Question.objects.all()
+```
 
 ---
 
@@ -389,9 +417,21 @@ Una sola base de datos, los tenants están separados por **schemas** de PostgreS
 
 ---
 
-**Feo**
+**Complicado**
 
 -   Migrar la base de datos se vuelve lento, muy lento.
+
+---
+
+layout: false
+
+## Estructura de la base de datos
+
+<br/>
+<br/>
+<br/>
+
+## .center[🤔 ¿Cuál es la mejor opción?]
 
 ---
 
@@ -408,11 +448,13 @@ layout: true
 
 ---
 
+name: activate-tenant
+
 .box[🤔 ¿Cómo activar un tenant a partir de un request?]
 
 --
 
-.left-column[
+.left-column-66[
 
 ##### En general
 
@@ -421,18 +463,30 @@ layout: true
 -   Especificado en los headers
     ]
 
-.right-column[
+--
+
+.right-column-33[
 
 ##### A partir de la URL
 
 -   En el dominio
--   En el subdominio
+-   En el path
 -   En el querystring
     ]
 
 ---
 
+.box[🤔 ¿Cómo activar un tenant a partir de un request?]
+
+<br/>
+
+.center[![Diagrama de middleware y tenant activo](images/diagram-middleware-active-tenant.png)]
+
+---
+
 .box[🙋‍♀️ ¿Cómo generar URLs canónicas a un tenant?]
+
+<br/>
 
 |     |                             |
 | --- | --------------------------- |
@@ -444,10 +498,12 @@ layout: true
 
 .box[🙋‍♀️ ¿Cómo generar URLs canónicas a un tenant?]
 
+<br/>
+
 |     |                   |                                        |
 | --- | ----------------- | -------------------------------------- |
-| ✔️  | En el domain      | .emph[`tenant1`]`.example.com/view/`   |
-| ✔️  | En el subfolder   | `example.com/`.emph[`tenant1`]`/view/` |
+| ✔️  | En el dominio     | .emph[`tenant1`]`.example.com/view/`   |
+| ✔️  | En el path        | `example.com/`.emph[`tenant1`]`/view/` |
 | ✔️  | En el querystring | `example.com/view/?t=`.emph[`tenant1`] |
 
 ---
@@ -460,6 +516,10 @@ class: middle
 layout: false
 
 # ¿Por qué es importante esto?
+
+--
+
+.center[![Mapa de Cuba](images/cuba.jpg)]
 
 ---
 
@@ -492,9 +552,11 @@ layout: true
 
 ---
 
-layout: false
+layout: true
 
 ## Y se acabó
+
+---
 
 ##### Puedes encontrarme aquí:
 
@@ -503,6 +565,13 @@ layout: false
 | Twitter | [@lorinkoz](https://twitter.com/lorinkoz)          |
 | GitHub  | [github.com/lorinkoz](https://github.com/lorinkoz) |
 | Correo  | [lorinkoz@gmail.com](mailto:lorinkoz@gmail.com)    |
+
+.right[![Figurines con nasobuco](images/figurines.png)]
+
+---
+
+.left-column-66[![Barbacoa en La Habana](images/barbacoa2.jpg)]
+.right-column-33[![Barbacoa](images/barbeque2.png)]
 
 ---
 
