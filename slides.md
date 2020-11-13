@@ -308,8 +308,14 @@ layout: false
 ---
 
 layout: true
+name: db-structure
 
 ## Estructura de la base de datos
+
+---
+
+layout: true
+template: db-structure
 
 .left-column[![Diagram of isolated tenants](images/diagram-isolated.png)]
 .right-column[{{content}}]
@@ -328,29 +334,8 @@ Question.objects\
 
 ---
 
-**Bueno**
-
-Optimizada para separación de datos.
-
----
-
-**Malo**
-
-Sin relaciones entre bases de datos.
-
-Agregar tenants implica reconfigurar el proyecto.
-
----
-
-**Complicado**
-
-Altos costos de operación.
-
----
-
 layout: true
-
-## Estructura de la base de datos
+template: db-structure
 
 .left-column[![Diagram of isolated tenants](images/diagram-shared.png)]
 .right-column[{{content}}]
@@ -368,27 +353,8 @@ Question.objects\
 
 ---
 
-**Bueno**
-
-Optimizado para escalar.
-
----
-
-**Malo**
-
-Separar los datos debidamente requiere esfuerzo extra en el código.
-
----
-
-**Complicado**
-
-Es fácil olvidar la separación y comprometer los datos.
-
----
-
 layout: true
-
-## Estructura de la base de datos
+template: db-structure
 
 .left-column[![Diagram of isolated tenants](images/diagram-semi-isolated.png)]
 .right-column[{{content}}]
@@ -403,24 +369,6 @@ Una sola base de datos, los tenants están separados por **schemas** de PostgreS
 # SET search_path = tenant1
 Question.objects.all()
 ```
-
----
-
-**Bueno**
-
-Optimizado para separación de datos, aunque con mayor escalabilidad.
-
----
-
-**Malo**
-
-La operación con schemas de Postgres tiene una mayor curva de aprendizaje.
-
----
-
-**Complicado**
-
-Mutar la base de datos (migraciones) se vuelve lento, muy lento.
 
 ---
 
@@ -555,7 +503,7 @@ layout: true
 
 layout: true
 
-## Y se acabó
+## Y se acabó el tiempo
 
 ---
 
