@@ -1,15 +1,3 @@
-name: title
-class: middle
-
-.left-column-66[
-
-# .high[El pony y la barbacoa]
-
-]
-.right-column-33[.right[![Logo de Python Pizza](images/python-pizza.png)]]
-
----
-
 ## 👋 Hola
 
 .left-column-66[
@@ -22,6 +10,18 @@ class: middle
 
 ]
 .right-column-33[![Foto mía](images/lorinkoz.jpg)]
+
+---
+
+name: title
+class: middle
+
+.left-column-66[
+
+# .high[El pony y la barbacoa]
+
+]
+.right-column-33[.right[![Logo de Python Pizza](images/python-pizza.png)]]
 
 ---
 
@@ -322,7 +322,7 @@ Una base de datos para cada tenant.
 
 ```python
 Question.objects\
-        .using(tenant1)\
+        .using("tenant1")\
         .all()
 ```
 
@@ -330,20 +330,21 @@ Question.objects\
 
 **Bueno**
 
--   Optimizada para separación de datos.
+Optimizada para separación de datos.
 
 ---
 
 **Malo**
 
--   Sin relaciones entre bases de datos.
--   Agregar tenants implica reconfigurar el proyecto.
+Sin relaciones entre bases de datos.
+
+Agregar tenants implica reconfigurar el proyecto.
 
 ---
 
 **Complicado**
 
--   Altos costos de operación.
+Altos costos de operación.
 
 ---
 
@@ -358,7 +359,7 @@ layout: true
 
 ## Compartida
 
-Una sola base de datos con datos estan mezclados e identificados por tenant.
+Una sola base de datos con los datos mezclados e identificados por tenant.
 
 ```python
 Question.objects\
@@ -369,19 +370,19 @@ Question.objects\
 
 **Bueno**
 
--   Optimizado para escalar.
+Optimizado para escalar.
 
 ---
 
 **Malo**
 
--   Separar los datos debidamente requiere esfuerzo extra en el código.
+Separar los datos debidamente requiere esfuerzo extra en el código.
 
 ---
 
 **Complicado**
 
--   Es fácil olvidar la separación y comprometer los datos.
+Es fácil olvidar la separación y comprometer los datos.
 
 ---
 
@@ -407,19 +408,19 @@ Question.objects.all()
 
 **Bueno**
 
--   Optimizado para separación de datos, aunque con mayor escalabilidad.
+Optimizado para separación de datos, aunque con mayor escalabilidad.
 
 ---
 
 **Malo**
 
--   La operación con schemas de Postgres tiene una mayor curva de aprendizaje.
+La operación con schemas de Postgres tiene una mayor curva de aprendizaje.
 
 ---
 
 **Complicado**
 
--   Migrar la base de datos se vuelve lento, muy lento.
+Mutar la base de datos (migraciones) se vuelve lento, muy lento.
 
 ---
 
@@ -566,7 +567,7 @@ layout: true
 | GitHub  | [github.com/lorinkoz](https://github.com/lorinkoz) |
 | Correo  | [lorinkoz@gmail.com](mailto:lorinkoz@gmail.com)    |
 
-.right[![Figurines con nasobuco](images/figurines.png)]
+.center[![Figurines con nasobuco](images/figurines.png)]
 
 ---
 
